@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sakshi Danej — Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* 🌙 DARK THEME (default) */
+            --bg: #0f0f14;
+            /* soft black */
+            --text: #f5f5f7;
+            /* off-white */
+            --card: #1b1b24;
+            /* charcoal card */
+            --accent: #e6a6b0;
+            /* dusty pink */
+            --accent-soft: #9fb3c8;
+            /* blue-beige */
+        }
+
+        body.light {
+            /* ☀️ LIGHT THEME */
+            --bg: #faf4f6;
+            /* baby pink beige */
+            --text: #2b2b2b;
+            /* soft charcoal */
+            --card: #ffffff;
+            /* clean white */
+            --accent: #f0b7c3;
+            /* blush pink */
+            --accent-soft: #a8bdd0;
+            /* pastel blue-beige */
+        }
+
+
+        /* ---------------- RESET / BASE ---------------- */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ---------------- LAYOUT HELPERS ---------------- */
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------------- NAVBAR ---------------- */
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: var(--bg);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            background: var(--accent);
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 96px;
+        }
+
+        h1 {
+            font-size: 64px;
+            line-height: 1;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 36px;
+            margin-bottom: 24px;
+        }
+
+        p {
+            font-size: 14px;
+            max-width: 520px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .square {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        /* ---------------- HERO (UPGRADED) ---------------- */
+
+        .hero-advanced {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-text {
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(64px, 10vw, 120px);
+            line-height: 0.9;
+            margin: 0;
+        }
+
+        .hero-title-main {
+            color: var(--text);
+        }
+
+        .hero-title-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent);
+            margin-top: -24px;
+        }
+
+        .hero-description {
+            margin-top: 32px;
+            max-width: 520px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text);
+            opacity: 0.85;
+        }
+
+        /* Right visual */
+        .hero-visual {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            opacity: 0.65;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-title-outline {
+                margin-top: -16px;
+            }
+        }
+
+        /* ---------------- RESPONSIVE NAV ---------------- */
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .nav {
+                position: relative;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-right {
+                position: absolute;
+                top: 72px;
+                right: 0;
+                width: 100%;
+                background: var(--bg);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 24px;
+                display: none;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .nav-right a,
+            .nav-right .btn {
+                width: 100%;
+            }
+
+            .nav-right.active {
+                display: flex;
+            }
+        }
+
+
+
+
+        /* ---------------- SKILLS ---------------- */
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .badge-design {
+            background: #ffffff;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        body.light .badge-design {
+            background: #111;
+            color: #fff;
+        }
+
+        .badge-tech {
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        /* ---------------- POSTERS ---------------- */
+
+        .carousel {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .carousel .card {
+            min-width: 300px;
+            height: 400px;
+            scroll-snap-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Poster card container */
+        .poster-card {
+            padding: 0;
+            /* remove inner padding */
+            overflow: hidden;
+            /* crop overflow cleanly */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Poster images */
+        .poster-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* fills card nicely */
+            object-position: center;
+            display: block;
+        }
+
+
+        /* ---------------- POSTERS SECTION ---------------- */
+
+        .posters-section {
+            padding: 96px 0;
+            position: relative;
+        }
+
+        .posters-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        /* Full-bleed wrapper */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Horizontal scroll container */
+        .carousel {
+            display: flex;
+            gap: 24px;
+            padding: 0 48px 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+
+            /* Hide scrollbar */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        /* Cards */
+        .poster-card {
+            min-width: 300px;
+            height: 420px;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* Fade edges (premium touch) */
+        .carousel-wrapper::before,
+        .carousel-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .carousel-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right,
+                    var(--bg),
+                    transparent);
+        }
+
+        .carousel-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left,
+                    var(--bg),
+                    transparent);
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 768px) {
+            .carousel {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .poster-card {
+                min-width: 260px;
+                height: 360px;
+            }
+        }
+
+
+        /* ---------------- WORK GRID ---------------- */
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------------- CONTACT ---------------- */
+
+        #contact {
+            background: #000;
+            text-align: center;
+            padding: 96px 24px;
+        }
+
+        #contact p {
+            color: #ccc;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="container nav">
+
+            <!-- Logo / Name -->
+            <div class="font-display">✦ Sakshi Danej</div>
+
+            <!-- Hamburger (mobile only) -->
+            <button class="nav-toggle" onclick="toggleNav()">
+                ☰
+            </button>
+
+            <!-- Nav Links -->
+            <div class="nav-right" id="navMenu">
+                <a href="#about" onclick="closeNav()">About</a>
+                <a href="#skills" onclick="closeNav()">Skills</a>
+                <a href="#posters" onclick="closeNav()">Posters</a>
+                <a href="#work" onclick="closeNav()">Work</a>
+
+                <button class="btn" onclick="toggleTheme()">☀️ / 🌙</button>
+                <a href="#contact" class="btn">Get in touch</a>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <!-- HERO -->
+    <section class="hero-advanced">
+        <div class="container hero-grid">
+
+            <!-- LEFT CONTENT -->
+            <div class="hero-text">
+                <h1 class="hero-title hero-title-main font-display">
+                    PORTFOLIO
+                </h1>
+                <h1 class="hero-title hero-title-outline font-display">
+                    PORTFOLIO
+                </h1>
+
+                <p class="hero-description">
+                    I’m <strong>Sakshi Danej</strong> - a UI/UX designer and web developer creating clear, well-designed
+                    digital products that balance aesthetics, usability, and solid engineering.
+
+
+                </p>
+            </div>
+
+            <!-- RIGHT VISUAL -->
+            <div class="hero-visual card">
+                <span>Your Photo / Illustration</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container grid-2">
+            <div>
+                <h2 class="font-display">Hello, I’m Sakshi 👋</h2>
+                <p>
+                    I design and build websites, applications, and digital experiences that balance clean, intuitive UI
+                    with strong branding and scalable technical architecture. My work spans the full product lifecycle —
+                    from visual design and user experience to development, integration, and deployment.
+
+
+
+
+                </p>
+                <p> On the design side, I create brand-aligned interfaces and marketing visuals, including social media
+                    creatives, posters, and layouts, focusing on clarity, consistency, and usability to ensure designs
+                    communicate effectively across platforms.</p>
+
+                <p> On the technical side, I develop responsive, performance-focused web applications using modern
+                    frontend and backend technologies. I build scalable architectures, integrate APIs, manage data
+                    flows, and deliver reliable, production-ready solutions that translate visual ideas into real,
+                    working products.</p>
+
+            </div>
+
+            <div class="card">
+                <h3 class="font-display" style="margin-left:1vw;">What I Do</h3>
+                <ul style="font-size:14px; line-height:1.8;">
+                    <li> UI / UX & App Design</li>
+                    <li> Website Development</li>
+                    <li> Branding & Visual Identity</li>
+                    <li> Mobile-first & Responsive Design</li>
+                    <li> End-to-End Product Thinking</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container grid-2">
+            <div>
+                <h3 class="font-display">Design Skills</h3>
+                <div class="badges">
+                    <span class="badge-design">UI / UX Design</span>
+                    <span class="badge-design">Product Design</span>
+                    <span class="badge-design">Mobile App Design</span>
+                    <span class="badge-design">Web Design Systems</span>
+                    <span class="badge-design">Design Systems</span>
+                    <span class="badge-design">User Research Basics</span>
+                    <span class="badge-design">Wireframing</span>
+                    <span class="badge-design">High-Fidelity Prototyping</span>
+                    <span class="badge-design">Interaction Design</span>
+                    <span class="badge-design">Visual Hierarchy</span>
+                    <span class="badge-design">Brand Identity</span>
+                    <span class="badge-design">Social Media Creatives</span>
+                    <span class="badge-design">Canva Marketing Designs</span>
+                    <span class="badge-design">Landing Page Design</span>
+                    <span class="badge-design">Accessibility Awareness</span>
+                </div>
+
+            </div>
+
+            <div>
+                <h3 class="font-display">Technical Skills</h3>
+                <div class="badges">
+                    <span class="badge-tech">HTML5</span>
+                    <span class="badge-tech">CSS3</span>
+                    <span class="badge-tech">Responsive Design</span>
+                    <span class="badge-tech">JavaScript (ES6+)</span>
+                    <span class="badge-tech">React.js</span>
+                    <span class="badge-tech">Component-Based Architecture</span>
+                    <span class="badge-tech">Node.js</span>
+                    <span class="badge-tech">REST APIs</span>
+                    <span class="badge-tech">API Integration</span>
+                    <span class="badge-tech">Databases (SQL / NoSQL)</span>
+                    <span class="badge-tech">Authentication & Authorization</span>
+                    <span class="badge-tech">End-to-End Web Apps</span>
+                    <span class="badge-tech">AI API Integration</span>
+                    <span class="badge-tech">Prompt Engineering</span>
+                    <span class="badge-tech">Version Control (Git)</span>
+                    <span class="badge-tech">Deployment</span>
+                    <span class="badge-tech">Hosting and Maintenance</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- POSTERS -->
+    <section id="posters" class="posters-section">
+        <h2 class="font-display posters-title">Poster & Canva Designs</h2>
+
+        <div class="carousel-wrapper">
+            <div class="carousel">
+                <div class="card poster-card"><img src="./posters/poster1.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster3.jpg" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster4.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster5.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster6.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster7.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster8.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster9.png" alt=""></div>
+                <div class="card poster-card"><img src="./posters/poster10.png" alt=""></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- WORK -->
+    <section id="work">
+        <div class="container">
+            <h2 class="font-display" style="text-align:center;">Website & App Demos</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h4>
+                        <a href="http://gssntechnology.com" target="_blank">
+                            CRM Solutions Provider Website
+                        </a>
+                    </h4>
+
+                    <p>
+                        Built a professional website for a CRM and tech services company,
+                        helping strengthen their online presence and support high-value
+                        enterprise client acquisition.
+                    </p>
+
+                    <a href="http://gssntechnology.com" target="_blank" class="btn"
+                        style="margin-top:16px; display:inline-block;">
+                        View Live Website
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h4>
+                        <a href="https://sakshi-danej-portfolio.vercel.app/" target="_blank">
+                            Personal Portfolio Website
+                        </a>
+                    </h4>
+
+                    <p>
+                        Designed and developed a personal portfolio showcasing UI/UX skills,
+                        responsive layouts, and a seamless dark/light theme experience.
+                    </p>
+
+                    <a href="https://sakshi-danej-portfolio.vercel.app/" target="_blank" class="btn"
+                        style="margin-top:16px; display:inline-block;">
+                        View Live Website
+                    </a>
+                </div>
+
+                <div class="card">
+                    <h4>
+                        <a href="https://yourwebsite.com" target="_blank">
+                            Resort & Hospitality Website
+                        </a>
+                    </h4>
+
+                    <p>
+                        Designed a visually engaging website for a resort to showcase services,
+                        improve brand visibility, and attract potential guests through a
+                        strong digital presence.
+                    </p>
+
+                    <a href="https://yourwebsite.com" target="_blank" class="btn"
+                        style="margin-top:16px; display:inline-block;">
+                        View Live Website
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="font-display">Let’s Create Something Beautiful</h2>
+        <p>Available for freelance & collaborations</p>
+        <a class="btn" href="mailto:your@email.com">Contact Me</a>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+        }
+        function toggleNav() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+
+        function closeNav() {
+            document.getElementById("navMenu").classList.remove("active");
+        }
+
+    </script>
+
+</body>
+
+</html>
