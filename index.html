@@ -472,6 +472,82 @@
             color: #ccc;
             margin-bottom: 32px;
         }
+
+        /* ---------------- FOOTER ---------------- */
+
+        .footer {
+            background: var(--card);
+            padding: 96px 0 32px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .footer-text p {
+            max-width: 520px;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        .footer-form h4 {
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .footer-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-form input,
+        .footer-form textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        body:not(.light) .footer-form input,
+        body:not(.light) .footer-form textarea {
+            background: #0f0f14;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-bottom {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+
+        body:not(.light) .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -688,7 +764,7 @@
 
                 <div class="card">
                     <h4>
-                        <a href="https://yourwebsite.com" target="_blank">
+                        <a href="https://resort-landing-pg-website.vercel.app/" target="_blank">
                             Resort & Hospitality Website
                         </a>
                     </h4>
@@ -699,7 +775,7 @@
                         strong digital presence.
                     </p>
 
-                    <a href="https://yourwebsite.com" target="_blank" class="btn"
+                    <a href="https://resort-landing-pg-website.vercel.app/" target="_blank" class="btn"
                         style="margin-top:16px; display:inline-block;">
                         View Live Website
                     </a>
@@ -709,11 +785,39 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-        <h2 class="font-display">Let’s Create Something Beautiful</h2>
-        <p>Available for freelance & collaborations</p>
-        <a class="btn" href="mailto:your@email.com">Contact Me</a>
-    </section>
+    <footer id="contact" class="footer">
+        <div class="container footer-content">
+
+            <!-- Left -->
+            <div class="footer-text">
+                <h2 class="font-display">Let’s Create Something Beautiful ✨</h2>
+                <p>
+                    Available for freelance projects, collaborations, and full-time opportunities.
+                    Feel free to reach out — I’d love to hear from you.
+                </p>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="footer-form card">
+                <h4>Leave a message</h4>
+
+                <form action="mailto:your@email.com" method="post" enctype="text/plain">
+                    <input type="text" name="name" placeholder="Your name" required />
+                    <input type="email" name="email" placeholder="Your email" required />
+                    <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> Developed by <strong>Sakshi Danej</strong></p>
+        </div>
+    </footer>
+
 
     <script>
         function toggleTheme() {
@@ -726,6 +830,8 @@
         function closeNav() {
             document.getElementById("navMenu").classList.remove("active");
         }
+        document.getElementById("year").textContent = new Date().getFullYear();
+
 
     </script>
 
