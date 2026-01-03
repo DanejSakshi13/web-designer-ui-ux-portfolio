@@ -284,6 +284,45 @@
             }
         }
 
+        /* Hero visual container */
+        /* Hero visual container — RECTANGLE */
+        .hero-visual {
+            width: 100%;
+            max-width: 420px;
+            /* controls overall size */
+            aspect-ratio: 3 / 4;
+            /* portrait rectangle */
+            margin-left: auto;
+            /* align right on desktop */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+            /* crop image cleanly */
+        }
+
+        /* Hero image */
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* fills rectangle nicely */
+            object-position: center;
+            display: block;
+        }
+
+
+        @media (max-width: 768px) {
+            .hero-visual {
+                max-width: 320px;
+                margin: 0 auto;
+                /* center on mobile */
+            }
+        }
+
+
 
 
 
@@ -602,10 +641,10 @@
                 </p>
             </div>
 
-            <!-- RIGHT VISUAL -->
             <div class="hero-visual card">
-                <span>Your Photo / Illustration</span>
+                <img src="./profile.png" alt="Sakshi Danej profile" />
             </div>
+
 
         </div>
     </section>
@@ -620,8 +659,6 @@
                     I design and build websites, applications, and digital experiences that balance clean, intuitive UI
                     with strong branding and scalable technical architecture. My work spans the full product lifecycle —
                     from visual design and user experience to development, integration, and deployment.
-
-
 
 
                 </p>
